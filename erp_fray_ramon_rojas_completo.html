@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ERP Completo - IE Fray Ramón Rojas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #3d0a0f;
+    --navy-mid: #5a1319;
+    --navy-light: #7a1b24;
+    --gold: #c9963a;
+    --gold-light: #e8b455;
+    --gold-pale: #f5d98a;
+    --cream: #fdf8f0;
+    --white: #ffffff;
+    --gray-soft: #e8d4d8;
+    --gray-mid: #b89098;
+    --text-dark: #1a0008;
+    --success: #2d7a4f;
+    --accent: #c92a2a;
+    --red-primary: #d62828;
+    --red-dark: #9d0208;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(214,40,40,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(157,2,8,0.12) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.01) 40px, rgba(255,255,255,0.01) 41px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper { position: relative; z-index: 1; }
+
+  /* ─── SIDEBAR ─── */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 260px;
+    background: linear-gradient(180deg, var(--navy-mid) 0%, var(--navy) 100%);
+    border-right: 1px solid rgba(201,150,58,0.2);
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+    box-shadow: 4px 0 30px rgba(0,0,0,0.4);
+  }
+
+  .logo-area {
+    padding: 20px 24px 24px;
+    border-bottom: 1px solid rgba(201,150,58,0.15);
+    text-align: center;
+  }
+
+  .logo-image {
+    width: 50px;
+    height: 56px;
+    margin: 0 auto 12px;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  }
+
+  .school-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .school-sub {
+    font-size: 10px;
+    color: var(--gray-mid);
+    letter-spacing: 1px;
+    margin-top: 4px;
+    text-transform: uppercase;
+  }
+
+  .nav-section {
+    padding: 20px 16px;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .nav-label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray-mid);
+    padding: 0 8px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    transition: all 0.2s ease;
+    margin-bottom: 2px;
+  }
+
+  .nav-item:hover {
+    background: rgba(201,150,58,0.1);
+    color: var(--gold-light);
+  }
+
+  .nav-item.active {
+    background: linear-gradient(135deg, rgba(201,150,58,0.2), rgba(201,150,58,0.08));
+    color: var(--gold-light);
+    border: 1px solid rgba(201,150,58,0.25);
+  }
+
+  .nav-icon { font-size: 17px; width: 22px; text-align: center; }
+
+  .sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid rgba(201,150,58,0.1);
+    font-size: 11px;
+    color: var(--gray-mid);
+    text-align: center;
+  }
+
+  /* ─── MAIN ─── */
+  .main {
+    margin-left: 260px;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    background: rgba(61,10,15,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,150,58,0.15);
+    padding: 0 36px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-top: 2px;
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .year-badge {
+    background: rgba(201,150,58,0.15);
+    border: 1px solid rgba(201,150,58,0.3);
+    color: var(--gold-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .user-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px;
+    cursor: pointer;
+  }
+
+  .content {
+    padding: 36px;
+  }
+
+  /* ─── MODULES CONTAINER ─── */
+  .module-view {
+    display: none;
+  }
+
+  .module-view.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── CARDS ─── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .stat-card {
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+    border: 1px solid rgba(201,150,58,0.15);
+    border-radius: 16px;
+    padding: 22px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(201,150,58,0.35);
+  }
+
+  .stat-icon {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  .section-card {
+    background: linear-gradient(135deg, var(--navy-mid), rgba(90,19,25,0.95));
+    border: 1px solid rgba(201,150,58,0.15);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 28px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .section-icon-box {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .section-desc {
+    font-size: 12px;
+    color: var(--gray-mid);
+    margin-top: 3px;
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    border: none;
+    border-radius: 12px;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    box-shadow: 0 4px 20px rgba(201,150,58,0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,150,58,0.45);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.07);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.12);
+  }
+
+  .btn-small {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  /* ─── TABLE ─── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .data-table thead {
+    background: rgba(201,150,58,0.1);
+  }
+
+  .data-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(201,150,58,0.2);
+  }
+
+  .data-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 14px;
+  }
+
+  .data-table tbody tr {
+    transition: background 0.2s;
+  }
+
+  .data-table tbody tr:hover {
+    background: rgba(201,150,58,0.05);
+  }
+
+  /* ─── FORMS ─── */
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-input, .form-select {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(201,150,58,0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .form-input:focus, .form-select:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .form-select option {
+    background: var(--navy-mid);
+    color: var(--white);
+  }
+
+  /* ─── BADGES ─── */
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+  }
+
+  .badge-success {
+    background: rgba(45,122,79,0.25);
+    color: #5dd68a;
+    border: 1px solid rgba(45,122,79,0.3);
+  }
+
+  .badge-warning {
+    background: rgba(201,150,58,0.2);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,150,58,0.3);
+  }
+
+  .badge-danger {
+    background: rgba(214,40,40,0.2);
+    color: #ff6b6b;
+    border: 1px solid rgba(214,40,40,0.3);
+  }
+
+  .badge-info {
+    background: rgba(74,127,181,0.2);
+    color: #7eb3e8;
+    border: 1px solid rgba(74,127,181,0.25);
+  }
+
+  /* ─── SCHEDULE GRID ─── */
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 100px repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(201,150,58,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+
+  .schedule-header {
+    background: var(--navy-mid);
+    padding: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--gold-light);
+  }
+
+  .schedule-time {
+    background: var(--navy-mid);
+    padding: 12px;
+    font-size: 11px;
+    text-align: center;
+    color: var(--gray-mid);
+  }
+
+  .schedule-cell {
+    background: rgba(90,19,25,0.3);
+    padding: 10px;
+    min-height: 60px;
+    font-size: 12px;
+    transition: background 0.2s;
+  }
+
+  .schedule-cell:hover {
+    background: rgba(201,150,58,0.1);
+  }
+
+  .schedule-class {
+    background: linear-gradient(135deg, rgba(201,150,58,0.2), rgba(201,150,58,0.05));
+    border-left: 3px solid var(--gold);
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 11px;
+  }
+
+  .schedule-teacher {
+    font-size: 10px;
+    color: var(--gray-mid);
+    margin-top: 2px;
+  }
+
+  /* ─── GRADE INPUT ─── */
+  .grade-input {
+    width: 60px;
+    text-align: center;
+    padding: 8px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,150,58,0.2);
+    border-radius: 8px;
+    color: var(--white);
+    font-weight: 600;
+  }
+
+  .grade-input:focus {
+    border-color: var(--gold);
+    outline: none;
+  }
+
+  /* ─── ATTENDANCE ─── */
+  .attendance-grid {
+    display: grid;
+    grid-template-columns: 250px repeat(auto-fill, 40px);
+    gap: 1px;
+    background: rgba(201,150,58,0.1);
+    border-radius: 12px;
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+
+  .attendance-name {
+    background: var(--navy-mid);
+    padding: 12px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+  }
+
+  .attendance-date {
+    background: var(--navy-mid);
+    padding: 8px 4px;
+    font-size: 10px;
+    text-align: center;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .attendance-cell {
+    background: rgba(90,19,25,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .attendance-cell:hover {
+    background: rgba(201,150,58,0.15);
+  }
+
+  .attendance-present {
+    background: rgba(45,122,79,0.3);
+    color: #5dd68a;
+  }
+
+  .attendance-absent {
+    background: rgba(214,40,40,0.3);
+    color: #ff6b6b;
+  }
+
+  .attendance-late {
+    background: rgba(201,150,58,0.3);
+    color: var(--gold-light);
+  }
+
+  /* ─── MODAL ─── */
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+    border: 1px solid rgba(201,150,58,0.3);
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: modalSlide 0.3s ease;
+  }
+
+  @keyframes modalSlide {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--gray-mid);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover {
+    color: var(--white);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .sidebar { width: 70px; }
+    .school-name, .school-sub, .nav-item span, .nav-label, .sidebar-footer { display: none; }
+    .main { margin-left: 70px; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; }
+    .content { padding: 20px 16px; }
+    .stats-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo-area">
+      <img src="FRAY.PNG" alt="Logo IE Fray Ramón Rojas" class="logo-image">
+      <div class="school-name">IE Fray Ramón<br>Rojas</div>
+      <div class="school-sub">Sistema ERP Escolar</div>
+    </div>
+    <nav class="nav-section">
+      <div class="nav-label">Principal</div>
+      <div class="nav-item active" onclick="showModule('dashboard')">
+        <span class="nav-icon">📊</span>
+        <span>Dashboard</span>
+      </div>
+      <div class="nav-item" onclick="showModule('docentes')">
+        <span class="nav-icon">👨‍🏫</span>
+        <span>Docentes</span>
+      </div>
+      <div class="nav-item" onclick="showModule('estudiantes')">
+        <span class="nav-icon">👨‍🎓</span>
+        <span>Estudiantes</span>
+      </div>
+      <div class="nav-item" onclick="showModule('cursos')">
+        <span class="nav-icon">📚</span>
+        <span>Cursos</span>
+      </div>
+      <div class="nav-label">Académico</div>
+      <div class="nav-item" onclick="showModule('horarios')">
+        <span class="nav-icon">📅</span>
+        <span>Horarios</span>
+      </div>
+      <div class="nav-item" onclick="showModule('calificaciones')">
+        <span class="nav-icon">📝</span>
+        <span>Calificaciones</span>
+      </div>
+      <div class="nav-item" onclick="showModule('asistencia')">
+        <span class="nav-icon">✅</span>
+        <span>Asistencia</span>
+      </div>
+      <div class="nav-label">Gestión</div>
+      <div class="nav-item" onclick="showModule('reportes')">
+        <span class="nav-icon">📋</span>
+        <span>Reportes</span>
+      </div>
+      <div class="nav-item" onclick="showModule('config')">
+        <span class="nav-icon">⚙️</span>
+        <span>Configuración</span>
+      </div>
+    </nav>
+    <div class="sidebar-footer">v3.0 · 2025</div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div>
+        <div class="page-title" id="pageTitle">Panel de Control</div>
+        <div class="page-subtitle">Institución Educativa Fray Ramón Rojas</div>
+      </div>
+      <div class="topbar-right">
+        <div class="year-badge">Año Escolar 2025</div>
+        <div class="user-avatar">DR</div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- DASHBOARD MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-dashboard" class="module-view active">
+        
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon">👨‍🏫</div>
+            <div class="stat-num">42</div>
+            <div class="stat-label">Docentes Activos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">👨‍🎓</div>
+            <div class="stat-num">820</div>
+            <div class="stat-label">Estudiantes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-num">24</div>
+            <div class="stat-label">Cursos Dictados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🏫</div>
+            <div class="stat-num">18</div>
+            <div class="stat-label">Aulas Activas</div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">📊</div>
+            <div>
+              <div class="section-title">Resumen General</div>
+              <div class="section-desc">Vista rápida del estado actual del colegio</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div>
+              <h3 style="color: var(--gold-light); margin-bottom: 16px; font-size: 15px;">📈 Estadísticas Académicas</h3>
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; display: flex; justify-content: space-between;">
+                  <span style="color: var(--gray-mid);">Promedio General</span>
+                  <span style="color: var(--gold-light); font-weight: 700;">14.5</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; display: flex; justify-content: space-between;">
+                  <span style="color: var(--gray-mid);">Asistencia Promedio</span>
+                  <span style="color: #5dd68a; font-weight: 700;">92%</span>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; display: flex; justify-content: space-between;">
+                  <span style="color: var(--gray-mid);">Tasa de Aprobación</span>
+                  <span style="color: #5dd68a; font-weight: 700;">88%</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 style="color: var(--gold-light); margin-bottom: 16px; font-size: 15px;">🎯 Accesos Rápidos</h3>
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-secondary btn-small" onclick="showModule('calificaciones')" style="justify-content: flex-start;">
+                  📝 Registrar Calificaciones
+                </button>
+                <button class="btn btn-secondary btn-small" onclick="showModule('asistencia')" style="justify-content: flex-start;">
+                  ✅ Tomar Asistencia
+                </button>
+                <button class="btn btn-secondary btn-small" onclick="showModule('reportes')" style="justify-content: flex-start;">
+                  📋 Generar Reportes
+                </button>
+                <button class="btn btn-secondary btn-small" onclick="showModule('horarios')" style="justify-content: flex-start;">
+                  📅 Ver Horarios
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- DOCENTES MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-docentes" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">👨‍🏫</div>
+            <div style="flex: 1;">
+              <div class="section-title">Gestión de Docentes</div>
+              <div class="section-desc">Administra los profesores y sus asignaciones</div>
+            </div>
+            <button class="btn btn-primary" onclick="openModal('addDocente')">➕ Nuevo Docente</button>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <input type="text" class="form-input" placeholder="🔍 Buscar docente por nombre, código o área..." 
+                   style="max-width: 400px;" onkeyup="buscarDocente(this.value)">
+          </div>
+
+          <table class="data-table" id="docentesTable">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nombre Completo</th>
+                <th>Área</th>
+                <th>Nivel</th>
+                <th>Horas/Sem</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="docentesTableBody">
+              <!-- Se llenará con JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- ESTUDIANTES MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-estudiantes" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">👨‍🎓</div>
+            <div style="flex: 1;">
+              <div class="section-title">Gestión de Estudiantes</div>
+              <div class="section-desc">Administra los alumnos matriculados</div>
+            </div>
+            <button class="btn btn-primary" onclick="openModal('addEstudiante')">➕ Nuevo Estudiante</button>
+          </div>
+
+          <div class="form-row" style="margin-bottom: 20px;">
+            <div class="form-group">
+              <label class="form-label">Nivel</label>
+              <select class="form-select" onchange="filtrarEstudiantes()">
+                <option value="">Todos los niveles</option>
+                <option value="primaria">Primaria</option>
+                <option value="secundaria">Secundaria</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Grado</label>
+              <select class="form-select" onchange="filtrarEstudiantes()">
+                <option value="">Todos los grados</option>
+                <option value="1">1° Grado</option>
+                <option value="2">2° Grado</option>
+                <option value="3">3° Grado</option>
+                <option value="4">4° Grado</option>
+                <option value="5">5° Grado</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sección</label>
+              <select class="form-select" onchange="filtrarEstudiantes()">
+                <option value="">Todas las secciones</option>
+                <option value="A">Sección A</option>
+                <option value="B">Sección B</option>
+                <option value="C">Sección C</option>
+              </select>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Apellidos y Nombres</th>
+                <th>Grado/Sección</th>
+                <th>DNI</th>
+                <th>Promedio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>E-001</td>
+                <td>García Rodríguez, Ana María</td>
+                <td>3° Secundaria - A</td>
+                <td>78945612</td>
+                <td><span class="badge badge-success">15.8</span></td>
+                <td><span class="badge badge-success">Activo</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small">👁️ Ver</button>
+                </td>
+              </tr>
+              <tr>
+                <td>E-002</td>
+                <td>Pérez Sánchez, Carlos Miguel</td>
+                <td>3° Secundaria - A</td>
+                <td>78456123</td>
+                <td><span class="badge badge-info">13.2</span></td>
+                <td><span class="badge badge-success">Activo</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small">👁️ Ver</button>
+                </td>
+              </tr>
+              <tr>
+                <td>E-003</td>
+                <td>López Martínez, Jessica Paola</td>
+                <td>3° Secundaria - A</td>
+                <td>79123456</td>
+                <td><span class="badge badge-success">16.5</span></td>
+                <td><span class="badge badge-success">Activo</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small">👁️ Ver</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- HORARIOS MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-horarios" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">📅</div>
+            <div style="flex: 1;">
+              <div class="section-title">Horarios de Clases</div>
+              <div class="section-desc">Consulta y administra los horarios por grado</div>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label">Seleccionar Grado</label>
+              <select class="form-select">
+                <option>3° Secundaria - Sección A</option>
+                <option>3° Secundaria - Sección B</option>
+                <option>4° Secundaria - Sección A</option>
+                <option>5° Secundaria - Sección A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Turno</label>
+              <select class="form-select">
+                <option>Mañana</option>
+                <option>Tarde</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="schedule-grid">
+            <div class="schedule-header"></div>
+            <div class="schedule-header">Lunes</div>
+            <div class="schedule-header">Martes</div>
+            <div class="schedule-header">Miércoles</div>
+            <div class="schedule-header">Jueves</div>
+            <div class="schedule-header">Viernes</div>
+
+            <div class="schedule-time">08:00<br>08:45</div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Matemática
+                <div class="schedule-teacher">Prof. Tipismana</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Comunicación
+                <div class="schedule-teacher">Prof. Vargas</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Matemática
+                <div class="schedule-teacher">Prof. Tipismana</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Historia
+                <div class="schedule-teacher">Prof. Rojas</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Inglés
+                <div class="schedule-teacher">Prof. Cáceres</div>
+              </div>
+            </div>
+
+            <div class="schedule-time">08:45<br>09:30</div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Ciencias
+                <div class="schedule-teacher">Prof. Torres</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Matemática
+                <div class="schedule-teacher">Prof. Tipismana</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Comunicación
+                <div class="schedule-teacher">Prof. Vargas</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Ciencias
+                <div class="schedule-teacher">Prof. Torres</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Ed. Física
+                <div class="schedule-teacher">Prof. Mallma</div>
+              </div>
+            </div>
+
+            <div class="schedule-time">09:30<br>10:15</div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Historia
+                <div class="schedule-teacher">Prof. Rojas</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Inglés
+                <div class="schedule-teacher">Prof. Cáceres</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Arte
+                <div class="schedule-teacher">Prof. Quispe</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Comunicación
+                <div class="schedule-teacher">Prof. Vargas</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Matemática
+                <div class="schedule-teacher">Prof. Tipismana</div>
+              </div>
+            </div>
+
+            <div class="schedule-time" style="background: rgba(201,150,58,0.1); color: var(--gold);">10:15<br>10:30</div>
+            <div class="schedule-cell" style="background: rgba(201,150,58,0.05);" colspan="5">
+              <div style="text-align: center; color: var(--gold); font-weight: 600;">☕ RECREO</div>
+            </div>
+            <div class="schedule-cell" style="background: rgba(201,150,58,0.05);"></div>
+            <div class="schedule-cell" style="background: rgba(201,150,58,0.05);"></div>
+            <div class="schedule-cell" style="background: rgba(201,150,58,0.05);"></div>
+            <div class="schedule-cell" style="background: rgba(201,150,58,0.05);"></div>
+
+            <div class="schedule-time">10:30<br>11:15</div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Ciencias Sociales
+                <div class="schedule-teacher">Prof. Lopez</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Ed. Física
+                <div class="schedule-teacher">Prof. Mallma</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Ciencias Sociales
+                <div class="schedule-teacher">Prof. Lopez</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Inglés
+                <div class="schedule-teacher">Prof. Cáceres</div>
+              </div>
+            </div>
+            <div class="schedule-cell">
+              <div class="schedule-class">
+                Historia
+                <div class="schedule-teacher">Prof. Rojas</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; text-align: right;">
+            <button class="btn btn-primary">💾 Guardar Cambios</button>
+            <button class="btn btn-secondary">🖨️ Imprimir Horario</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- CALIFICACIONES MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-calificaciones" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">📝</div>
+            <div style="flex: 1;">
+              <div class="section-title">Registro de Calificaciones</div>
+              <div class="section-desc">Ingresa y administra las notas de los estudiantes</div>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label">Curso</label>
+              <select class="form-select">
+                <option>Matemática - 3° Secundaria A</option>
+                <option>Comunicación - 3° Secundaria A</option>
+                <option>Ciencias Naturales - 3° Secundaria A</option>
+                <option>Historia - 3° Secundaria A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Bimestre</label>
+              <select class="form-select">
+                <option>I Bimestre</option>
+                <option>II Bimestre</option>
+                <option>III Bimestre</option>
+                <option>IV Bimestre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tipo de Evaluación</label>
+              <select class="form-select">
+                <option>Examen Parcial</option>
+                <option>Examen Final</option>
+                <option>Práctica Calificada</option>
+                <option>Trabajo Grupal</option>
+                <option>Participación</option>
+              </select>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>N°</th>
+                <th>Código</th>
+                <th>Apellidos y Nombres</th>
+                <th>Nota</th>
+                <th>Observaciones</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>E-001</td>
+                <td>García Rodríguez, Ana María</td>
+                <td><input type="number" class="grade-input" value="16" min="0" max="20"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><span class="badge badge-success">Aprobado</span></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>E-002</td>
+                <td>Pérez Sánchez, Carlos Miguel</td>
+                <td><input type="number" class="grade-input" value="13" min="0" max="20"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><span class="badge badge-success">Aprobado</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>E-003</td>
+                <td>López Martínez, Jessica Paola</td>
+                <td><input type="number" class="grade-input" value="18" min="0" max="20"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><span class="badge badge-success">Aprobado</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>E-004</td>
+                <td>Ramírez Torres, Luis Alberto</td>
+                <td><input type="number" class="grade-input" value="10" min="0" max="20"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><span class="badge badge-danger">Desaprobado</span></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>E-005</td>
+                <td>Flores Gómez, María Fernanda</td>
+                <td><input type="number" class="grade-input" value="15" min="0" max="20"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><span class="badge badge-success">Aprobado</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="color: var(--gray-mid); font-size: 13px;">
+              Promedio del aula: <span style="color: var(--gold-light); font-weight: 700; font-size: 16px;">14.4</span>
+            </div>
+            <div>
+              <button class="btn btn-secondary">📊 Ver Estadísticas</button>
+              <button class="btn btn-primary">💾 Guardar Notas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- ASISTENCIA MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-asistencia" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">✅</div>
+            <div style="flex: 1;">
+              <div class="section-title">Control de Asistencia</div>
+              <div class="section-desc">Registra la asistencia diaria de los estudiantes</div>
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label">Grado y Sección</label>
+              <select class="form-select">
+                <option>3° Secundaria - Sección A</option>
+                <option>3° Secundaria - Sección B</option>
+                <option>4° Secundaria - Sección A</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Fecha</label>
+              <input type="date" class="form-input" value="2025-02-18">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Curso</label>
+              <select class="form-select">
+                <option>Matemática</option>
+                <option>Comunicación</option>
+                <option>Ciencias Naturales</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="background: rgba(201,150,58,0.1); padding: 16px; border-radius: 12px; margin-bottom: 20px;">
+            <div style="display: flex; gap: 24px; justify-content: center;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 16px; height: 16px; background: rgba(45,122,79,0.4); border-radius: 4px;"></div>
+                <span style="font-size: 13px;">✓ Presente</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 16px; height: 16px; background: rgba(214,40,40,0.4); border-radius: 4px;"></div>
+                <span style="font-size: 13px;">✗ Ausente</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 16px; height: 16px; background: rgba(201,150,58,0.4); border-radius: 4px;"></div>
+                <span style="font-size: 13px;">⏰ Tardanza</span>
+              </div>
+            </div>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>N°</th>
+                <th>Código</th>
+                <th>Apellidos y Nombres</th>
+                <th>Estado</th>
+                <th>Hora Llegada</th>
+                <th>Observaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>E-001</td>
+                <td>García Rodríguez, Ana María</td>
+                <td>
+                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
+                    <option value="presente" selected>✓ Presente</option>
+                    <option value="ausente">✗ Ausente</option>
+                    <option value="tardanza">⏰ Tardanza</option>
+                  </select>
+                </td>
+                <td>08:00</td>
+                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" placeholder="-"></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>E-002</td>
+                <td>Pérez Sánchez, Carlos Miguel</td>
+                <td>
+                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
+                    <option value="presente" selected>✓ Presente</option>
+                    <option value="ausente">✗ Ausente</option>
+                    <option value="tardanza">⏰ Tardanza</option>
+                  </select>
+                </td>
+                <td>08:00</td>
+                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" placeholder="-"></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>E-003</td>
+                <td>López Martínez, Jessica Paola</td>
+                <td>
+                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
+                    <option value="presente">✓ Presente</option>
+                    <option value="ausente">✗ Ausente</option>
+                    <option value="tardanza" selected>⏰ Tardanza</option>
+                  </select>
+                </td>
+                <td>08:15</td>
+                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" value="Justificado"></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>E-004</td>
+                <td>Ramírez Torres, Luis Alberto</td>
+                <td>
+                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
+                    <option value="presente">✓ Presente</option>
+                    <option value="ausente" selected>✗ Ausente</option>
+                    <option value="tardanza">⏰ Tardanza</option>
+                  </select>
+                </td>
+                <td>-</td>
+                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" placeholder="Motivo"></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>E-005</td>
+                <td>Flores Gómez, María Fernanda</td>
+                <td>
+                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
+                    <option value="presente" selected>✓ Presente</option>
+                    <option value="ausente">✗ Ausente</option>
+                    <option value="tardanza">⏰ Tardanza</option>
+                  </select>
+                </td>
+                <td>08:00</td>
+                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" placeholder="-"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 24px; font-size: 13px; color: var(--gray-mid);">
+              <div>Presentes: <span style="color: #5dd68a; font-weight: 700;">3</span></div>
+              <div>Ausentes: <span style="color: #ff6b6b; font-weight: 700;">1</span></div>
+              <div>Tardanzas: <span style="color: var(--gold-light); font-weight: 700;">1</span></div>
+              <div>Total: <span style="color: var(--white); font-weight: 700;">5</span></div>
+            </div>
+            <div>
+              <button class="btn btn-primary">💾 Guardar Asistencia</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- REPORTES MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-reportes" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">📋</div>
+            <div>
+              <div class="section-title">Generación de Reportes</div>
+              <div class="section-desc">Crea reportes académicos y administrativos en PDF</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 24px;">
+            
+            <!-- Reporte 1 -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
+              <div style="font-size: 32px; margin-bottom: 12px;">📊</div>
+              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Boleta de Notas</h3>
+              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Genera boletas de calificaciones por estudiante o por aula completa.</p>
+              
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>Por Estudiante</option>
+                  <option>Por Aula Completa</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>3° Secundaria A</option>
+                  <option>4° Secundaria A</option>
+                  <option>5° Secundaria A</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <select class="form-select">
+                  <option>I Bimestre</option>
+                  <option>II Bimestre</option>
+                  <option>III Bimestre</option>
+                  <option>IV Bimestre</option>
+                  <option>Anual</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('boleta')">📄 Generar PDF</button>
+            </div>
+
+            <!-- Reporte 2 -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
+              <div style="font-size: 32px; margin-bottom: 12px;">📅</div>
+              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Registro de Asistencia</h3>
+              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Reporte mensual o anual de asistencia por aula o estudiante.</p>
+              
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>Por Mes</option>
+                  <option>Por Bimestre</option>
+                  <option>Anual</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>3° Secundaria A</option>
+                  <option>Todos los grados</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <input type="month" class="form-input" value="2025-02">
+              </div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('asistencia')">📄 Generar PDF</button>
+            </div>
+
+            <!-- Reporte 3 -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
+              <div style="font-size: 32px; margin-bottom: 12px;">👨‍🏫</div>
+              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Carga Horaria Docente</h3>
+              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Reporte de horas asignadas y cursos por docente.</p>
+              
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>Todos los Docentes</option>
+                  <option>Por Docente</option>
+                  <option>Por Área</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>Prof. Freddy Tipismana</option>
+                  <option>Prof. Maykell Gutierres</option>
+                  <option>Prof. Evaristo Lopez</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <select class="form-select">
+                  <option>Año 2025</option>
+                  <option>I Semestre</option>
+                  <option>II Semestre</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('docentes')">📄 Generar PDF</button>
+            </div>
+
+            <!-- Reporte 4 -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
+              <div style="font-size: 32px; margin-bottom: 12px;">📈</div>
+              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Estadísticas Académicas</h3>
+              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Análisis de rendimiento, aprobación y deserción.</p>
+              
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>Por Grado</option>
+                  <option>Por Nivel</option>
+                  <option>Institucional</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>I Bimestre</option>
+                  <option>II Bimestre</option>
+                  <option>III Bimestre</option>
+                  <option>IV Bimestre</option>
+                  <option>Anual</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <select class="form-select">
+                  <option>Gráficos y Tablas</option>
+                  <option>Solo Datos</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('estadisticas')">📄 Generar PDF</button>
+            </div>
+
+            <!-- Reporte 5 -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
+              <div style="font-size: 32px; margin-bottom: 12px;">🎓</div>
+              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Actas de Evaluación</h3>
+              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Actas oficiales de notas finales por curso y periodo.</p>
+              
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>3° Secundaria A</option>
+                  <option>4° Secundaria A</option>
+                  <option>Todos los grados</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>Matemática</option>
+                  <option>Comunicación</option>
+                  <option>Todos los cursos</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <select class="form-select">
+                  <option>I Bimestre</option>
+                  <option>Final Anual</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('actas')">📄 Generar PDF</button>
+            </div>
+
+            <!-- Reporte 6 -->
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
+              <div style="font-size: 32px; margin-bottom: 12px;">📋</div>
+              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Nómina de Matrícula</h3>
+              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Listado oficial de estudiantes matriculados.</p>
+              
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>Por Grado y Sección</option>
+                  <option>Por Nivel</option>
+                  <option>Todos los estudiantes</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 12px;">
+                <select class="form-select">
+                  <option>3° Secundaria A</option>
+                  <option>Primaria Completa</option>
+                  <option>Secundaria Completa</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <select class="form-select">
+                  <option>Con Datos Completos</option>
+                  <option>Solo Nombres</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('nomina')">📄 Generar PDF</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- CURSOS MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-cursos" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">📚</div>
+            <div style="flex: 1;">
+              <div class="section-title">Gestión de Cursos</div>
+              <div class="section-desc">Administra los cursos y asignaciones</div>
+            </div>
+            <button class="btn btn-primary">➕ Nuevo Curso</button>
+          </div>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nombre del Curso</th>
+                <th>Nivel</th>
+                <th>Grado</th>
+                <th>Docente Asignado</th>
+                <th>Horas/Sem</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>CUR-001</td>
+                <td>Matemática</td>
+                <td>Secundaria</td>
+                <td>3°</td>
+                <td>Prof. Freddy Tipismana</td>
+                <td>5</td>
+                <td><button class="btn btn-secondary btn-small">✏️ Editar</button></td>
+              </tr>
+              <tr>
+                <td>CUR-002</td>
+                <td>Comunicación</td>
+                <td>Secundaria</td>
+                <td>3°</td>
+                <td>Prof. Maykell Gutierres</td>
+                <td>5</td>
+                <td><button class="btn btn-secondary btn-small">✏️ Editar</button></td>
+              </tr>
+              <tr>
+                <td>CUR-003</td>
+                <td>Ciencias Sociales</td>
+                <td>Secundaria</td>
+                <td>3°</td>
+                <td>Prof. Evaristo Lopez</td>
+                <td>4</td>
+                <td><button class="btn btn-secondary btn-small">✏️ Editar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <!-- CONFIG MODULE -->
+      <!-- ══════════════════════════════════════════════════════════════════ -->
+      <div id="module-config" class="module-view">
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon-box">⚙️</div>
+            <div>
+              <div class="section-title">Configuración del Sistema</div>
+              <div class="section-desc">Ajusta los parámetros del ERP</div>
+            </div>
+          </div>
+
+          <div style="display: grid; gap: 24px; margin-top: 24px;">
+            <div style="background: rgba(255,255,255,0.03); padding: 24px; border-radius: 16px;">
+              <h3 style="color: var(--gold-light); margin-bottom: 16px;">📅 Año Escolar</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Año Académico</label>
+                  <input type="text" class="form-input" value="2025">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Fecha Inicio</label>
+                  <input type="date" class="form-input" value="2025-03-01">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Fecha Fin</label>
+                  <input type="date" class="form-input" value="2025-12-20">
+                </div>
+              </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 24px; border-radius: 16px;">
+              <h3 style="color: var(--gold-light); margin-bottom: 16px;">📊 Sistema de Calificación</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Escala de Notas</label>
+                  <select class="form-select">
+                    <option>Vigesimal (0-20)</option>
+                    <option>Literal (AD, A, B, C)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Nota Mínima Aprobatoria</label>
+                  <input type="number" class="form-input" value="11">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Bimestres/Trimestres</label>
+                  <select class="form-select">
+                    <option>4 Bimestres</option>
+                    <option>3 Trimestres</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 24px; border-radius: 16px;">
+              <h3 style="color: var(--gold-light); margin-bottom: 16px;">🏫 Datos Institucionales</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Nombre de la IE</label>
+                  <input type="text" class="form-input" value="IE Fray Ramón Rojas">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Código Modular</label>
+                  <input type="text" class="form-input" value="123456">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Director(a)</label>
+                  <input type="text" class="form-input" value="Dr. Roberto Campos">
+                </div>
+              </div>
+            </div>
+
+            <div style="text-align: right;">
+              <button class="btn btn-secondary">🔄 Restablecer</button>
+              <button class="btn btn-primary">💾 Guardar Configuración</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- MODALS -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+
+<!-- Modal Agregar Docente -->
+<div id="modal-addDocente" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">➕ Registrar Nuevo Docente</div>
+      <button class="modal-close" onclick="closeModal('addDocente')">×</button>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nombres</label>
+        <input type="text" class="form-input" placeholder="Ej: Juan Carlos">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Apellidos</label>
+        <input type="text" class="form-input" placeholder="Ej: Pérez García">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">DNI</label>
+        <input type="text" class="form-input" placeholder="12345678">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="correo@ejemplo.com">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Área de Especialidad</label>
+        <select class="form-select">
+          <option>Matemática</option>
+          <option>Comunicación</option>
+          <option>Ciencias Naturales</option>
+          <option>Ciencias Sociales</option>
+          <option>Inglés</option>
+          <option>Educación Física</option>
+          <option>Arte</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nivel</label>
+        <select class="form-select">
+          <option>Primaria</option>
+          <option>Secundaria</option>
+          <option>Ambos</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+      <button class="btn btn-secondary" onclick="closeModal('addDocente')">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarDocente()">💾 Guardar Docente</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Agregar Estudiante -->
+<div id="modal-addEstudiante" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-title">➕ Matricular Nuevo Estudiante</div>
+      <button class="modal-close" onclick="closeModal('addEstudiante')">×</button>
+    </div>
+    
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Nombres</label>
+        <input type="text" class="form-input">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Apellidos</label>
+        <input type="text" class="form-input">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">DNI</label>
+        <input type="text" class="form-input">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Fecha de Nacimiento</label>
+        <input type="date" class="form-input">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Grado</label>
+        <select class="form-select">
+          <option>1° Primaria</option>
+          <option>2° Primaria</option>
+          <option>3° Primaria</option>
+          <option>4° Primaria</option>
+          <option>5° Primaria</option>
+          <option>6° Primaria</option>
+          <option>1° Secundaria</option>
+          <option>2° Secundaria</option>
+          <option>3° Secundaria</option>
+          <option>4° Secundaria</option>
+          <option>5° Secundaria</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Sección</label>
+        <select class="form-select">
+          <option>A</option>
+          <option>B</option>
+          <option>C</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Nombre del Apoderado</label>
+      <input type="text" class="form-input">
+    </div>
+
+    <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
+      <button class="btn btn-secondary" onclick="closeModal('addEstudiante')">Cancelar</button>
+      <button class="btn btn-primary" onclick="guardarEstudiante()">💾 Matricular</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════════════════════════════
+
+const moduleTitles = {
+  dashboard: 'Panel de Control',
+  docentes: 'Gestión de Docentes',
+  estudiantes: 'Gestión de Estudiantes',
+  cursos: 'Gestión de Cursos',
+  horarios: 'Horarios de Clases',
+  calificaciones: 'Registro de Calificaciones',
+  asistencia: 'Control de Asistencia',
+  reportes: 'Generación de Reportes',
+  config: 'Configuración del Sistema'
+};
+
+function showModule(moduleName) {
+  // Hide all modules
+  document.querySelectorAll('.module-view').forEach(m => m.classList.remove('active'));
+  
+  // Show selected module
+  const module = document.getElementById('module-' + moduleName);
+  if (module) {
+    module.classList.add('active');
+  }
+  
+  // Update nav items
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  event.target.closest('.nav-item').classList.add('active');
+  
+  // Update page title
+  document.getElementById('pageTitle').textContent = moduleTitles[moduleName];
+  
+  // Special load for docentes table
+  if (moduleName === 'docentes') {
+    loadDocentesTable();
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// DOCENTES DATA
+// ══════════════════════════════════════════════════════════════════
+
+const docentes = [
+  { id: 1, codigo: "D-001", nombre: "Prof. Carlos Alberto Mendoza Ríos", area: "Matemática", nivel: "Secundaria", horas: 24, estado: "activo" },
+  { id: 2, codigo: "D-002", nombre: "Prof. Rosa Elena Vargas Huamán", area: "Comunicación", nivel: "Secundaria", horas: 20, estado: "activo" },
+  { id: 3, codigo: "D-003", nombre: "Prof. Juan Manuel Torres Sánchez", area: "Ciencias Naturales", nivel: "Secundaria", horas: 18, estado: "activo" },
+  { id: 4, codigo: "D-004", nombre: "Prof. María del Carmen Rojas Díaz", area: "Historia y Geografía", nivel: "Secundaria", horas: 20, estado: "activo" },
+  { id: 5, codigo: "D-005", nombre: "Prof. Luis Fernando Cáceres Pérez", area: "Inglés", nivel: "Primaria", horas: 22, estado: "activo" },
+  { id: 6, codigo: "D-006", nombre: "Prof. Ana Sofía Paredes Luna", area: "Educación Física", nivel: "Primaria", horas: 16, estado: "licencia" },
+  { id: 7, codigo: "D-007", nombre: "Prof. Roberto Ángel Flores Mamani", area: "Matemática", nivel: "Primaria", horas: 20, estado: "activo" },
+  { id: 8, codigo: "D-008", nombre: "Prof. Gloria Beatriz Quispe Arce", area: "Arte y Cultura", nivel: "Secundaria", horas: 12, estado: "activo" },
+  { id: 9, codigo: "D-009", nombre: "Prof. Freddy Tipismana", area: "Matemática", nivel: "Secundaria", horas: 20, estado: "activo" },
+  { id: 10, codigo: "D-010", nombre: "Prof. Maykell Gutierres", area: "Comunicación", nivel: "Primaria", horas: 18, estado: "activo" },
+  { id: 11, codigo: "D-011", nombre: "Prof. Evaristo Lopez", area: "Ciencias Sociales", nivel: "Secundaria", horas: 22, estado: "activo" },
+  { id: 12, codigo: "D-012", nombre: "Prof. Javier Mallma", area: "Educación Física", nivel: "Secundaria", horas: 20, estado: "activo" }
+];
+
+function loadDocentesTable() {
+  const tbody = document.getElementById('docentesTableBody');
+  tbody.innerHTML = docentes.map(d => `
+    <tr>
+      <td>${d.codigo}</td>
+      <td>${d.nombre}</td>
+      <td>${d.area}</td>
+      <td>${d.nivel}</td>
+      <td>${d.horas}</td>
+      <td><span class="badge ${d.estado === 'activo' ? 'badge-success' : 'badge-warning'}">${d.estado === 'activo' ? 'Activo' : 'Licencia'}</span></td>
+      <td>
+        <button class="btn btn-secondary btn-small">👁️ Ver</button>
+        <button class="btn btn-secondary btn-small">✏️ Editar</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function buscarDocente(query) {
+  const filtered = docentes.filter(d => 
+    d.nombre.toLowerCase().includes(query.toLowerCase()) ||
+    d.codigo.toLowerCase().includes(query.toLowerCase()) ||
+    d.area.toLowerCase().includes(query.toLowerCase())
+  );
+  
+  const tbody = document.getElementById('docentesTableBody');
+  tbody.innerHTML = filtered.map(d => `
+    <tr>
+      <td>${d.codigo}</td>
+      <td>${d.nombre}</td>
+      <td>${d.area}</td>
+      <td>${d.nivel}</td>
+      <td>${d.horas}</td>
+      <td><span class="badge ${d.estado === 'activo' ? 'badge-success' : 'badge-warning'}">${d.estado === 'activo' ? 'Activo' : 'Licencia'}</span></td>
+      <td>
+        <button class="btn btn-secondary btn-small">👁️ Ver</button>
+        <button class="btn btn-secondary btn-small">✏️ Editar</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// MODALS
+// ══════════════════════════════════════════════════════════════════
+
+function openModal(modalName) {
+  document.getElementById('modal-' + modalName).classList.add('active');
+}
+
+function closeModal(modalName) {
+  document.getElementById('modal-' + modalName).classList.remove('active');
+}
+
+function guardarDocente() {
+  alert('✅ Docente registrado exitosamente');
+  closeModal('addDocente');
+}
+
+function guardarEstudiante() {
+  alert('✅ Estudiante matriculado exitosamente');
+  closeModal('addEstudiante');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// REPORTS PDF GENERATION
+// ══════════════════════════════════════════════════════════════════
+
+function generarPDF(tipo) {
+  const mensajes = {
+    boleta: '📄 Generando Boleta de Notas en PDF...',
+    asistencia: '📄 Generando Registro de Asistencia en PDF...',
+    docentes: '📄 Generando Reporte de Carga Horaria en PDF...',
+    estadisticas: '📄 Generando Estadísticas Académicas en PDF...',
+    actas: '📄 Generando Actas de Evaluación en PDF...',
+    nomina: '📄 Generando Nómina de Matrícula en PDF...'
+  };
+  
+  alert(mensajes[tipo] || '📄 Generando reporte...');
+  
+  // Aquí se integraría con una librería como jsPDF o html2pdf
+  setTimeout(() => {
+    alert('✅ PDF generado exitosamente!\n\nEl archivo se ha descargado en tu carpeta de descargas.');
+  }, 1500);
+}
+
+function filtrarEstudiantes() {
+  // Función para filtrar estudiantes según los selects
+  alert('Filtrando estudiantes...');
+}
+
+// Close modals on outside click
+window.onclick = function(event) {
+  if (event.target.classList.contains('modal')) {
+    event.target.classList.remove('active');
+  }
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  loadDocentesTable();
+});
+</script>
+
+</body>
+</html>
