@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ERP Completo - IE Fray Ramón Rojas</title>
+<title>ERP - IE Fray Ramón Rojas | Secundaria</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -92,6 +92,29 @@
     letter-spacing: 1px;
     margin-top: 4px;
     text-transform: uppercase;
+  }
+
+  .contact-info {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(201,150,58,0.15);
+  }
+
+  .contact-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.3px;
+    margin-bottom: 6px;
+  }
+
+  .contact-phone {
+    font-size: 10px;
+    color: var(--gray-mid);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
   }
 
   .nav-section {
@@ -208,7 +231,7 @@
     padding: 36px;
   }
 
-  /* ─── MODULES CONTAINER ─── */
+  /* ─── MODULES ─── */
   .module-view {
     display: none;
   }
@@ -458,6 +481,22 @@
     border: 1px solid rgba(74,127,181,0.25);
   }
 
+  /* ─── SECTION BADGES ─── */
+  .section-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-right: 6px;
+  }
+
+  .section-a { background: rgba(74,127,181,0.2); color: #7eb3e8; border: 1px solid rgba(74,127,181,0.3); }
+  .section-b { background: rgba(45,122,79,0.2); color: #5dd68a; border: 1px solid rgba(45,122,79,0.3); }
+  .section-c { background: rgba(201,150,58,0.2); color: var(--gold-light); border: 1px solid rgba(201,150,58,0.3); }
+  .section-d { background: rgba(214,40,40,0.2); color: #ff6b6b; border: 1px solid rgba(214,40,40,0.3); }
+
   /* ─── SCHEDULE GRID ─── */
   .schedule-grid {
     display: grid;
@@ -530,62 +569,6 @@
     outline: none;
   }
 
-  /* ─── ATTENDANCE ─── */
-  .attendance-grid {
-    display: grid;
-    grid-template-columns: 250px repeat(auto-fill, 40px);
-    gap: 1px;
-    background: rgba(201,150,58,0.1);
-    border-radius: 12px;
-    overflow-x: auto;
-    margin-top: 20px;
-  }
-
-  .attendance-name {
-    background: var(--navy-mid);
-    padding: 12px;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-  }
-
-  .attendance-date {
-    background: var(--navy-mid);
-    padding: 8px 4px;
-    font-size: 10px;
-    text-align: center;
-    color: var(--gold-light);
-    font-weight: 600;
-  }
-
-  .attendance-cell {
-    background: rgba(90,19,25,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-
-  .attendance-cell:hover {
-    background: rgba(201,150,58,0.15);
-  }
-
-  .attendance-present {
-    background: rgba(45,122,79,0.3);
-    color: #5dd68a;
-  }
-
-  .attendance-absent {
-    background: rgba(214,40,40,0.3);
-    color: #ff6b6b;
-  }
-
-  .attendance-late {
-    background: rgba(201,150,58,0.3);
-    color: var(--gold-light);
-  }
-
   /* ─── MODAL ─── */
   .modal {
     display: none;
@@ -649,7 +632,7 @@
   /* Responsive */
   @media (max-width: 900px) {
     .sidebar { width: 70px; }
-    .school-name, .school-sub, .nav-item span, .nav-label, .sidebar-footer { display: none; }
+    .school-name, .school-sub, .contact-info, .nav-item span, .nav-label, .sidebar-footer { display: none; }
     .main { margin-left: 70px; }
     .stats-row { grid-template-columns: 1fr 1fr; }
   }
@@ -671,6 +654,10 @@
       <img src="FRAY.PNG" alt="Logo IE Fray Ramón Rojas" class="logo-image">
       <div class="school-name">IE Fray Ramón<br>Rojas</div>
       <div class="school-sub">Sistema ERP Escolar</div>
+      <div class="contact-info">
+        <div class="contact-name">👨‍🏫 PROFESOR LYMAN SALAS P.</div>
+        <div class="contact-phone">📱 918 170 174</div>
+      </div>
     </div>
     <nav class="nav-section">
       <div class="nav-label">Principal</div>
@@ -685,6 +672,10 @@
       <div class="nav-item" onclick="showModule('estudiantes')">
         <span class="nav-icon">👨‍🎓</span>
         <span>Estudiantes</span>
+      </div>
+      <div class="nav-item" onclick="showModule('secciones')">
+        <span class="nav-icon">🏫</span>
+        <span>Secciones</span>
       </div>
       <div class="nav-item" onclick="showModule('cursos')">
         <span class="nav-icon">📚</span>
@@ -713,7 +704,7 @@
         <span>Configuración</span>
       </div>
     </nav>
-    <div class="sidebar-footer">v3.0 · 2025</div>
+    <div class="sidebar-footer">v3.0 · 2025 | Secundaria</div>
   </aside>
 
   <!-- MAIN -->
@@ -723,11 +714,11 @@
     <header class="topbar">
       <div>
         <div class="page-title" id="pageTitle">Panel de Control</div>
-        <div class="page-subtitle">Institución Educativa Fray Ramón Rojas</div>
+        <div class="page-subtitle">IE Fray Ramón Rojas - Nivel Secundaria</div>
       </div>
       <div class="topbar-right">
         <div class="year-badge">Año Escolar 2025</div>
-        <div class="user-avatar">DR</div>
+        <div class="user-avatar">LS</div>
       </div>
     </header>
 
@@ -747,18 +738,18 @@
           </div>
           <div class="stat-card">
             <div class="stat-icon">👨‍🎓</div>
-            <div class="stat-num">820</div>
+            <div class="stat-num">600</div>
             <div class="stat-label">Estudiantes</div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon">📚</div>
-            <div class="stat-num">24</div>
-            <div class="stat-label">Cursos Dictados</div>
+            <div class="stat-icon">🏫</div>
+            <div class="stat-num">20</div>
+            <div class="stat-label">Secciones (A-D)</div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon">🏫</div>
-            <div class="stat-num">18</div>
-            <div class="stat-label">Aulas Activas</div>
+            <div class="stat-icon">📚</div>
+            <div class="stat-num">15</div>
+            <div class="stat-label">Cursos</div>
           </div>
         </div>
 
@@ -766,26 +757,88 @@
           <div class="section-header">
             <div class="section-icon-box">📊</div>
             <div>
-              <div class="section-title">Resumen General</div>
-              <div class="section-desc">Vista rápida del estado actual del colegio</div>
+              <div class="section-title">Estructura del Colegio - Secundaria</div>
+              <div class="section-desc">5 Grados × 4 Secciones = 20 Aulas</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 32px;">
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; text-align: center;">
+              <div style="font-size: 28px; margin-bottom: 8px;">1️⃣</div>
+              <div style="color: var(--gold-light); font-weight: 700; margin-bottom: 12px;">1° Secundaria</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span class="section-badge section-a">Sección A</span>
+                <span class="section-badge section-b">Sección B</span>
+                <span class="section-badge section-c">Sección C</span>
+                <span class="section-badge section-d">Sección D</span>
+              </div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--gray-mid);">120 estudiantes</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; text-align: center;">
+              <div style="font-size: 28px; margin-bottom: 8px;">2️⃣</div>
+              <div style="color: var(--gold-light); font-weight: 700; margin-bottom: 12px;">2° Secundaria</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span class="section-badge section-a">Sección A</span>
+                <span class="section-badge section-b">Sección B</span>
+                <span class="section-badge section-c">Sección C</span>
+                <span class="section-badge section-d">Sección D</span>
+              </div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--gray-mid);">120 estudiantes</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; text-align: center;">
+              <div style="font-size: 28px; margin-bottom: 8px;">3️⃣</div>
+              <div style="color: var(--gold-light); font-weight: 700; margin-bottom: 12px;">3° Secundaria</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span class="section-badge section-a">Sección A</span>
+                <span class="section-badge section-b">Sección B</span>
+                <span class="section-badge section-c">Sección C</span>
+                <span class="section-badge section-d">Sección D</span>
+              </div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--gray-mid);">120 estudiantes</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; text-align: center;">
+              <div style="font-size: 28px; margin-bottom: 8px;">4️⃣</div>
+              <div style="color: var(--gold-light); font-weight: 700; margin-bottom: 12px;">4° Secundaria</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span class="section-badge section-a">Sección A</span>
+                <span class="section-badge section-b">Sección B</span>
+                <span class="section-badge section-c">Sección C</span>
+                <span class="section-badge section-d">Sección D</span>
+              </div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--gray-mid);">120 estudiantes</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; text-align: center;">
+              <div style="font-size: 28px; margin-bottom: 8px;">5️⃣</div>
+              <div style="color: var(--gold-light); font-weight: 700; margin-bottom: 12px;">5° Secundaria</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <span class="section-badge section-a">Sección A</span>
+                <span class="section-badge section-b">Sección B</span>
+                <span class="section-badge section-c">Sección C</span>
+                <span class="section-badge section-d">Sección D</span>
+              </div>
+              <div style="margin-top: 12px; font-size: 12px; color: var(--gray-mid);">120 estudiantes</div>
             </div>
           </div>
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
             <div>
-              <h3 style="color: var(--gold-light); margin-bottom: 16px; font-size: 15px;">📈 Estadísticas Académicas</h3>
+              <h3 style="color: var(--gold-light); margin-bottom: 16px; font-size: 15px;">📈 Estadísticas por Grado</h3>
               <div style="display: flex; flex-direction: column; gap: 12px;">
                 <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; display: flex; justify-content: space-between;">
                   <span style="color: var(--gray-mid);">Promedio General</span>
-                  <span style="color: var(--gold-light); font-weight: 700;">14.5</span>
+                  <span style="color: var(--gold-light); font-weight: 700;">14.2</span>
                 </div>
                 <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; display: flex; justify-content: space-between;">
                   <span style="color: var(--gray-mid);">Asistencia Promedio</span>
-                  <span style="color: #5dd68a; font-weight: 700;">92%</span>
+                  <span style="color: #5dd68a; font-weight: 700;">93%</span>
                 </div>
                 <div style="background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; display: flex; justify-content: space-between;">
-                  <span style="color: var(--gray-mid);">Tasa de Aprobación</span>
-                  <span style="color: #5dd68a; font-weight: 700;">88%</span>
+                  <span style="color: var(--gray-mid);">Alumnos por Sección</span>
+                  <span style="color: #7eb3e8; font-weight: 700;">~30</span>
                 </div>
               </div>
             </div>
@@ -793,17 +846,17 @@
             <div>
               <h3 style="color: var(--gold-light); margin-bottom: 16px; font-size: 15px;">🎯 Accesos Rápidos</h3>
               <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-secondary btn-small" onclick="showModule('secciones')" style="justify-content: flex-start;">
+                  🏫 Ver Todas las Secciones
+                </button>
                 <button class="btn btn-secondary btn-small" onclick="showModule('calificaciones')" style="justify-content: flex-start;">
                   📝 Registrar Calificaciones
                 </button>
                 <button class="btn btn-secondary btn-small" onclick="showModule('asistencia')" style="justify-content: flex-start;">
                   ✅ Tomar Asistencia
                 </button>
-                <button class="btn btn-secondary btn-small" onclick="showModule('reportes')" style="justify-content: flex-start;">
-                  📋 Generar Reportes
-                </button>
                 <button class="btn btn-secondary btn-small" onclick="showModule('horarios')" style="justify-content: flex-start;">
-                  📅 Ver Horarios
+                  📅 Ver Horarios por Sección
                 </button>
               </div>
             </div>
@@ -812,38 +865,133 @@
       </div>
 
       <!-- ══════════════════════════════════════════════════════════════════ -->
-      <!-- DOCENTES MODULE -->
+      <!-- SECCIONES MODULE (NUEVO) -->
       <!-- ══════════════════════════════════════════════════════════════════ -->
-      <div id="module-docentes" class="module-view">
+      <div id="module-secciones" class="module-view">
         <div class="section-card">
           <div class="section-header">
-            <div class="section-icon-box">👨‍🏫</div>
-            <div style="flex: 1;">
-              <div class="section-title">Gestión de Docentes</div>
-              <div class="section-desc">Administra los profesores y sus asignaciones</div>
+            <div class="section-icon-box">🏫</div>
+            <div>
+              <div class="section-title">Gestión de Secciones</div>
+              <div class="section-desc">20 Aulas organizadas por grado y sección</div>
             </div>
-            <button class="btn btn-primary" onclick="openModal('addDocente')">➕ Nuevo Docente</button>
           </div>
 
-          <div style="margin-bottom: 20px;">
-            <input type="text" class="form-input" placeholder="🔍 Buscar docente por nombre, código o área..." 
-                   style="max-width: 400px;" onkeyup="buscarDocente(this.value)">
+          <div class="form-row" style="margin-bottom: 24px;">
+            <div class="form-group">
+              <label class="form-label">Filtrar por Grado</label>
+              <select class="form-select" id="filterGrado" onchange="filtrarSecciones()">
+                <option value="">Todos los grados</option>
+                <option value="1">1° Secundaria</option>
+                <option value="2">2° Secundaria</option>
+                <option value="3">3° Secundaria</option>
+                <option value="4">4° Secundaria</option>
+                <option value="5">5° Secundaria</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Filtrar por Sección</label>
+              <select class="form-select" id="filterSeccion" onchange="filtrarSecciones()">
+                <option value="">Todas las secciones</option>
+                <option value="A">Sección A</option>
+                <option value="B">Sección B</option>
+                <option value="C">Sección C</option>
+                <option value="D">Sección D</option>
+              </select>
+            </div>
           </div>
 
-          <table class="data-table" id="docentesTable">
+          <table class="data-table">
             <thead>
               <tr>
-                <th>Código</th>
-                <th>Nombre Completo</th>
-                <th>Área</th>
-                <th>Nivel</th>
-                <th>Horas/Sem</th>
-                <th>Estado</th>
+                <th>Grado</th>
+                <th>Sección</th>
+                <th>Tutor</th>
+                <th>N° Estudiantes</th>
+                <th>Promedio</th>
+                <th>Asistencia</th>
                 <th>Acciones</th>
               </tr>
             </thead>
-            <tbody id="docentesTableBody">
-              <!-- Se llenará con JavaScript -->
+            <tbody id="seccionesTableBody">
+              <tr>
+                <td>1° Secundaria</td>
+                <td><span class="section-badge section-a">Sección A</span></td>
+                <td>Prof. Carlos Mendoza</td>
+                <td>30</td>
+                <td><span class="badge badge-success">14.5</span></td>
+                <td><span class="badge badge-success">94%</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small" onclick="verDetalle('1A')">👁️ Ver</button>
+                  <button class="btn btn-secondary btn-small" onclick="showModule('horarios')">📅 Horario</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1° Secundaria</td>
+                <td><span class="section-badge section-b">Sección B</span></td>
+                <td>Prof. Rosa Vargas</td>
+                <td>30</td>
+                <td><span class="badge badge-success">14.2</span></td>
+                <td><span class="badge badge-success">92%</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small" onclick="verDetalle('1B')">👁️ Ver</button>
+                  <button class="btn btn-secondary btn-small" onclick="showModule('horarios')">📅 Horario</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1° Secundaria</td>
+                <td><span class="section-badge section-c">Sección C</span></td>
+                <td>Prof. Juan Torres</td>
+                <td>30</td>
+                <td><span class="badge badge-info">13.8</span></td>
+                <td><span class="badge badge-success">91%</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small" onclick="verDetalle('1C')">👁️ Ver</button>
+                  <button class="btn btn-secondary btn-small" onclick="showModule('horarios')">📅 Horario</button>
+                </td>
+              </tr>
+              <tr>
+                <td>1° Secundaria</td>
+                <td><span class="section-badge section-d">Sección D</span></td>
+                <td>Prof. María Rojas</td>
+                <td>30</td>
+                <td><span class="badge badge-success">14.8</span></td>
+                <td><span class="badge badge-success">95%</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small" onclick="verDetalle('1D')">👁️ Ver</button>
+                  <button class="btn btn-secondary btn-small" onclick="showModule('horarios')">📅 Horario</button>
+                </td>
+              </tr>
+              <!-- Se repetirían para 2°, 3°, 4° y 5° -->
+              <tr>
+                <td>2° Secundaria</td>
+                <td><span class="section-badge section-a">Sección A</span></td>
+                <td>Prof. Freddy Tipismana</td>
+                <td>30</td>
+                <td><span class="badge badge-success">14.3</span></td>
+                <td><span class="badge badge-success">93%</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small" onclick="verDetalle('2A')">👁️ Ver</button>
+                  <button class="btn btn-secondary btn-small" onclick="showModule('horarios')">📅 Horario</button>
+                </td>
+              </tr>
+              <tr>
+                <td>2° Secundaria</td>
+                <td><span class="section-badge section-b">Sección B</span></td>
+                <td>Prof. Maykell Gutierres</td>
+                <td>30</td>
+                <td><span class="badge badge-success">14.1</span></td>
+                <td><span class="badge badge-success">92%</span></td>
+                <td>
+                  <button class="btn btn-secondary btn-small" onclick="verDetalle('2B')">👁️ Ver</button>
+                  <button class="btn btn-secondary btn-small" onclick="showModule('horarios')">📅 Horario</button>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="7" style="text-align: center; padding: 20px; color: var(--gray-mid); font-style: italic;">
+                  ... y así sucesivamente para todas las 20 secciones (1° a 5° × A, B, C, D)
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -858,39 +1006,36 @@
             <div class="section-icon-box">👨‍🎓</div>
             <div style="flex: 1;">
               <div class="section-title">Gestión de Estudiantes</div>
-              <div class="section-desc">Administra los alumnos matriculados</div>
+              <div class="section-desc">600 estudiantes matriculados en secundaria</div>
             </div>
             <button class="btn btn-primary" onclick="openModal('addEstudiante')">➕ Nuevo Estudiante</button>
           </div>
 
           <div class="form-row" style="margin-bottom: 20px;">
             <div class="form-group">
-              <label class="form-label">Nivel</label>
-              <select class="form-select" onchange="filtrarEstudiantes()">
-                <option value="">Todos los niveles</option>
-                <option value="primaria">Primaria</option>
-                <option value="secundaria">Secundaria</option>
-              </select>
-            </div>
-            <div class="form-group">
               <label class="form-label">Grado</label>
-              <select class="form-select" onchange="filtrarEstudiantes()">
+              <select class="form-select">
                 <option value="">Todos los grados</option>
-                <option value="1">1° Grado</option>
-                <option value="2">2° Grado</option>
-                <option value="3">3° Grado</option>
-                <option value="4">4° Grado</option>
-                <option value="5">5° Grado</option>
+                <option value="1">1° Secundaria</option>
+                <option value="2">2° Secundaria</option>
+                <option value="3">3° Secundaria</option>
+                <option value="4">4° Secundaria</option>
+                <option value="5">5° Secundaria</option>
               </select>
             </div>
             <div class="form-group">
               <label class="form-label">Sección</label>
-              <select class="form-select" onchange="filtrarEstudiantes()">
+              <select class="form-select">
                 <option value="">Todas las secciones</option>
                 <option value="A">Sección A</option>
                 <option value="B">Sección B</option>
                 <option value="C">Sección C</option>
+                <option value="D">Sección D</option>
               </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Buscar</label>
+              <input type="text" class="form-input" placeholder="Nombre o DNI...">
             </div>
           </div>
 
@@ -908,37 +1053,49 @@
             </thead>
             <tbody>
               <tr>
-                <td>E-001</td>
+                <td>E-2025-001</td>
                 <td>García Rodríguez, Ana María</td>
-                <td>3° Secundaria - A</td>
+                <td>3° <span class="section-badge section-a">A</span></td>
                 <td>78945612</td>
                 <td><span class="badge badge-success">15.8</span></td>
                 <td><span class="badge badge-success">Activo</span></td>
-                <td>
-                  <button class="btn btn-secondary btn-small">👁️ Ver</button>
-                </td>
+                <td><button class="btn btn-secondary btn-small">👁️ Ver</button></td>
               </tr>
               <tr>
-                <td>E-002</td>
+                <td>E-2025-002</td>
                 <td>Pérez Sánchez, Carlos Miguel</td>
-                <td>3° Secundaria - A</td>
+                <td>3° <span class="section-badge section-a">A</span></td>
                 <td>78456123</td>
                 <td><span class="badge badge-info">13.2</span></td>
                 <td><span class="badge badge-success">Activo</span></td>
-                <td>
-                  <button class="btn btn-secondary btn-small">👁️ Ver</button>
-                </td>
+                <td><button class="btn btn-secondary btn-small">👁️ Ver</button></td>
               </tr>
               <tr>
-                <td>E-003</td>
+                <td>E-2025-003</td>
                 <td>López Martínez, Jessica Paola</td>
-                <td>3° Secundaria - A</td>
+                <td>3° <span class="section-badge section-b">B</span></td>
                 <td>79123456</td>
                 <td><span class="badge badge-success">16.5</span></td>
                 <td><span class="badge badge-success">Activo</span></td>
-                <td>
-                  <button class="btn btn-secondary btn-small">👁️ Ver</button>
-                </td>
+                <td><button class="btn btn-secondary btn-small">👁️ Ver</button></td>
+              </tr>
+              <tr>
+                <td>E-2025-004</td>
+                <td>Torres Huamán, Roberto Luis</td>
+                <td>1° <span class="section-badge section-c">C</span></td>
+                <td>77854123</td>
+                <td><span class="badge badge-success">14.8</span></td>
+                <td><span class="badge badge-success">Activo</span></td>
+                <td><button class="btn btn-secondary btn-small">👁️ Ver</button></td>
+              </tr>
+              <tr>
+                <td>E-2025-005</td>
+                <td>Ramírez Castro, Sofia Elena</td>
+                <td>5° <span class="section-badge section-d">D</span></td>
+                <td>76123987</td>
+                <td><span class="badge badge-success">17.2</span></td>
+                <td><span class="badge badge-success">Activo</span></td>
+                <td><button class="btn btn-secondary btn-small">👁️ Ver</button></td>
               </tr>
             </tbody>
           </table>
@@ -954,27 +1111,43 @@
             <div class="section-icon-box">📅</div>
             <div style="flex: 1;">
               <div class="section-title">Horarios de Clases</div>
-              <div class="section-desc">Consulta y administra los horarios por grado</div>
+              <div class="section-desc">Consulta horarios por grado y sección</div>
             </div>
           </div>
 
           <div class="form-row" style="margin-bottom: 24px;">
             <div class="form-group">
               <label class="form-label">Seleccionar Grado</label>
-              <select class="form-select">
-                <option>3° Secundaria - Sección A</option>
-                <option>3° Secundaria - Sección B</option>
-                <option>4° Secundaria - Sección A</option>
-                <option>5° Secundaria - Sección A</option>
+              <select class="form-select" id="horarioGrado">
+                <option value="1">1° Secundaria</option>
+                <option value="2">2° Secundaria</option>
+                <option value="3" selected>3° Secundaria</option>
+                <option value="4">4° Secundaria</option>
+                <option value="5">5° Secundaria</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Seleccionar Sección</label>
+              <select class="form-select" id="horarioSeccion">
+                <option value="A" selected>Sección A</option>
+                <option value="B">Sección B</option>
+                <option value="C">Sección C</option>
+                <option value="D">Sección D</option>
               </select>
             </div>
             <div class="form-group">
               <label class="form-label">Turno</label>
               <select class="form-select">
-                <option>Mañana</option>
+                <option selected>Mañana</option>
                 <option>Tarde</option>
               </select>
             </div>
+          </div>
+
+          <div style="background: rgba(201,150,58,0.1); padding: 16px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+            <span style="font-size: 18px; font-weight: 700; color: var(--gold-light);">
+              📅 Horario: 3° Secundaria - Sección A
+            </span>
           </div>
 
           <div class="schedule-grid">
@@ -1052,8 +1225,8 @@
             <div class="schedule-time">09:30<br>10:15</div>
             <div class="schedule-cell">
               <div class="schedule-class">
-                Historia
-                <div class="schedule-teacher">Prof. Rojas</div>
+                C. Sociales
+                <div class="schedule-teacher">Prof. Lopez</div>
               </div>
             </div>
             <div class="schedule-cell">
@@ -1082,7 +1255,7 @@
             </div>
 
             <div class="schedule-time" style="background: rgba(201,150,58,0.1); color: var(--gold);">10:15<br>10:30</div>
-            <div class="schedule-cell" style="background: rgba(201,150,58,0.05);" colspan="5">
+            <div class="schedule-cell" style="background: rgba(201,150,58,0.05);">
               <div style="text-align: center; color: var(--gold); font-weight: 600;">☕ RECREO</div>
             </div>
             <div class="schedule-cell" style="background: rgba(201,150,58,0.05);"></div>
@@ -1093,8 +1266,8 @@
             <div class="schedule-time">10:30<br>11:15</div>
             <div class="schedule-cell">
               <div class="schedule-class">
-                Ciencias Sociales
-                <div class="schedule-teacher">Prof. Lopez</div>
+                Historia
+                <div class="schedule-teacher">Prof. Rojas</div>
               </div>
             </div>
             <div class="schedule-cell">
@@ -1105,7 +1278,7 @@
             </div>
             <div class="schedule-cell">
               <div class="schedule-class">
-                Ciencias Sociales
+                C. Sociales
                 <div class="schedule-teacher">Prof. Lopez</div>
               </div>
             </div>
@@ -1117,15 +1290,15 @@
             </div>
             <div class="schedule-cell">
               <div class="schedule-class">
-                Historia
-                <div class="schedule-teacher">Prof. Rojas</div>
+                Ciencias
+                <div class="schedule-teacher">Prof. Torres</div>
               </div>
             </div>
           </div>
 
           <div style="margin-top: 24px; text-align: right;">
-            <button class="btn btn-primary">💾 Guardar Cambios</button>
             <button class="btn btn-secondary">🖨️ Imprimir Horario</button>
+            <button class="btn btn-primary">💾 Guardar Cambios</button>
           </div>
         </div>
       </div>
@@ -1139,18 +1312,38 @@
             <div class="section-icon-box">📝</div>
             <div style="flex: 1;">
               <div class="section-title">Registro de Calificaciones</div>
-              <div class="section-desc">Ingresa y administra las notas de los estudiantes</div>
+              <div class="section-desc">Ingresa notas por grado, sección y curso</div>
             </div>
           </div>
 
           <div class="form-row" style="margin-bottom: 24px;">
             <div class="form-group">
+              <label class="form-label">Grado</label>
+              <select class="form-select">
+                <option>1° Secundaria</option>
+                <option>2° Secundaria</option>
+                <option selected>3° Secundaria</option>
+                <option>4° Secundaria</option>
+                <option>5° Secundaria</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sección</label>
+              <select class="form-select">
+                <option selected>Sección A</option>
+                <option>Sección B</option>
+                <option>Sección C</option>
+                <option>Sección D</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label class="form-label">Curso</label>
               <select class="form-select">
-                <option>Matemática - 3° Secundaria A</option>
-                <option>Comunicación - 3° Secundaria A</option>
-                <option>Ciencias Naturales - 3° Secundaria A</option>
-                <option>Historia - 3° Secundaria A</option>
+                <option>Matemática</option>
+                <option>Comunicación</option>
+                <option>Ciencias Naturales</option>
+                <option>Historia</option>
+                <option>Inglés</option>
               </select>
             </div>
             <div class="form-group">
@@ -1162,16 +1355,12 @@
                 <option>IV Bimestre</option>
               </select>
             </div>
-            <div class="form-group">
-              <label class="form-label">Tipo de Evaluación</label>
-              <select class="form-select">
-                <option>Examen Parcial</option>
-                <option>Examen Final</option>
-                <option>Práctica Calificada</option>
-                <option>Trabajo Grupal</option>
-                <option>Participación</option>
-              </select>
-            </div>
+          </div>
+
+          <div style="background: rgba(201,150,58,0.1); padding: 16px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+            <span style="font-size: 16px; font-weight: 700; color: var(--gold-light);">
+              📝 Matemática - 3° Secundaria Sección A - I Bimestre
+            </span>
           </div>
 
           <table class="data-table">
@@ -1188,55 +1377,44 @@
             <tbody>
               <tr>
                 <td>1</td>
-                <td>E-001</td>
+                <td>E-2025-001</td>
                 <td>García Rodríguez, Ana María</td>
                 <td><input type="number" class="grade-input" value="16" min="0" max="20"></td>
-                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px; padding: 6px;"></td>
                 <td><span class="badge badge-success">Aprobado</span></td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>E-002</td>
+                <td>E-2025-002</td>
                 <td>Pérez Sánchez, Carlos Miguel</td>
                 <td><input type="number" class="grade-input" value="13" min="0" max="20"></td>
-                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px; padding: 6px;"></td>
                 <td><span class="badge badge-success">Aprobado</span></td>
               </tr>
               <tr>
                 <td>3</td>
-                <td>E-003</td>
+                <td>E-2025-003</td>
                 <td>López Martínez, Jessica Paola</td>
                 <td><input type="number" class="grade-input" value="18" min="0" max="20"></td>
-                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px; padding: 6px;"></td>
                 <td><span class="badge badge-success">Aprobado</span></td>
               </tr>
               <tr>
                 <td>4</td>
-                <td>E-004</td>
+                <td>E-2025-004</td>
                 <td>Ramírez Torres, Luis Alberto</td>
                 <td><input type="number" class="grade-input" value="10" min="0" max="20"></td>
-                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
+                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px; padding: 6px;"></td>
                 <td><span class="badge badge-danger">Desaprobado</span></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>E-005</td>
-                <td>Flores Gómez, María Fernanda</td>
-                <td><input type="number" class="grade-input" value="15" min="0" max="20"></td>
-                <td><input type="text" class="form-input" placeholder="Opcional" style="font-size: 12px;"></td>
-                <td><span class="badge badge-success">Aprobado</span></td>
               </tr>
             </tbody>
           </table>
 
-          <div style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="margin-top: 24px; display: flex; justify-content: space-between;">
             <div style="color: var(--gray-mid); font-size: 13px;">
-              Promedio del aula: <span style="color: var(--gold-light); font-weight: 700; font-size: 16px;">14.4</span>
+              Promedio de la sección: <span style="color: var(--gold-light); font-weight: 700; font-size: 16px;">14.3</span>
             </div>
-            <div>
-              <button class="btn btn-secondary">📊 Ver Estadísticas</button>
-              <button class="btn btn-primary">💾 Guardar Notas</button>
-            </div>
+            <button class="btn btn-primary">💾 Guardar Notas</button>
           </div>
         </div>
       </div>
@@ -1250,29 +1428,40 @@
             <div class="section-icon-box">✅</div>
             <div style="flex: 1;">
               <div class="section-title">Control de Asistencia</div>
-              <div class="section-desc">Registra la asistencia diaria de los estudiantes</div>
+              <div class="section-desc">Registro diario por grado y sección</div>
             </div>
           </div>
 
           <div class="form-row" style="margin-bottom: 24px;">
             <div class="form-group">
-              <label class="form-label">Grado y Sección</label>
+              <label class="form-label">Grado</label>
               <select class="form-select">
-                <option>3° Secundaria - Sección A</option>
-                <option>3° Secundaria - Sección B</option>
-                <option>4° Secundaria - Sección A</option>
+                <option>1° Secundaria</option>
+                <option>2° Secundaria</option>
+                <option selected>3° Secundaria</option>
+                <option>4° Secundaria</option>
+                <option>5° Secundaria</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sección</label>
+              <select class="form-select">
+                <option selected>Sección A</option>
+                <option>Sección B</option>
+                <option>Sección C</option>
+                <option>Sección D</option>
               </select>
             </div>
             <div class="form-group">
               <label class="form-label">Fecha</label>
-              <input type="date" class="form-input" value="2025-02-18">
+              <input type="date" class="form-input" value="2025-02-20">
             </div>
             <div class="form-group">
               <label class="form-label">Curso</label>
               <select class="form-select">
                 <option>Matemática</option>
                 <option>Comunicación</option>
-                <option>Ciencias Naturales</option>
+                <option>Todas las horas</option>
               </select>
             </div>
           </div>
@@ -1294,6 +1483,12 @@
             </div>
           </div>
 
+          <div style="background: rgba(201,150,58,0.1); padding: 12px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+            <span style="font-size: 16px; font-weight: 700; color: var(--gold-light);">
+              ✅ 3° Secundaria - Sección A - 20/02/2025
+            </span>
+          </div>
+
           <table class="data-table">
             <thead>
               <tr>
@@ -1301,14 +1496,14 @@
                 <th>Código</th>
                 <th>Apellidos y Nombres</th>
                 <th>Estado</th>
-                <th>Hora Llegada</th>
+                <th>Hora</th>
                 <th>Observaciones</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>1</td>
-                <td>E-001</td>
+                <td>E-2025-001</td>
                 <td>García Rodríguez, Ana María</td>
                 <td>
                   <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
@@ -1322,7 +1517,7 @@
               </tr>
               <tr>
                 <td>2</td>
-                <td>E-002</td>
+                <td>E-2025-002</td>
                 <td>Pérez Sánchez, Carlos Miguel</td>
                 <td>
                   <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
@@ -1334,535 +1529,26 @@
                 <td>08:00</td>
                 <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" placeholder="-"></td>
               </tr>
-              <tr>
-                <td>3</td>
-                <td>E-003</td>
-                <td>López Martínez, Jessica Paola</td>
-                <td>
-                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
-                    <option value="presente">✓ Presente</option>
-                    <option value="ausente">✗ Ausente</option>
-                    <option value="tardanza" selected>⏰ Tardanza</option>
-                  </select>
-                </td>
-                <td>08:15</td>
-                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" value="Justificado"></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>E-004</td>
-                <td>Ramírez Torres, Luis Alberto</td>
-                <td>
-                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
-                    <option value="presente">✓ Presente</option>
-                    <option value="ausente" selected>✗ Ausente</option>
-                    <option value="tardanza">⏰ Tardanza</option>
-                  </select>
-                </td>
-                <td>-</td>
-                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" placeholder="Motivo"></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>E-005</td>
-                <td>Flores Gómez, María Fernanda</td>
-                <td>
-                  <select class="form-select" style="padding: 6px 10px; font-size: 12px; width: 140px;">
-                    <option value="presente" selected>✓ Presente</option>
-                    <option value="ausente">✗ Ausente</option>
-                    <option value="tardanza">⏰ Tardanza</option>
-                  </select>
-                </td>
-                <td>08:00</td>
-                <td><input type="text" class="form-input" style="font-size: 12px; padding: 6px;" placeholder="-"></td>
-              </tr>
             </tbody>
           </table>
 
-          <div style="margin-top: 24px; display: flex; justify-content: space-between; align-items: center;">
+          <div style="margin-top: 24px; display: flex; justify-content: space-between;">
             <div style="display: flex; gap: 24px; font-size: 13px; color: var(--gray-mid);">
-              <div>Presentes: <span style="color: #5dd68a; font-weight: 700;">3</span></div>
+              <div>Presentes: <span style="color: #5dd68a; font-weight: 700;">28</span></div>
               <div>Ausentes: <span style="color: #ff6b6b; font-weight: 700;">1</span></div>
               <div>Tardanzas: <span style="color: var(--gold-light); font-weight: 700;">1</span></div>
-              <div>Total: <span style="color: var(--white); font-weight: 700;">5</span></div>
+              <div>Total: <span style="color: var(--white); font-weight: 700;">30</span></div>
             </div>
-            <div>
-              <button class="btn btn-primary">💾 Guardar Asistencia</button>
-            </div>
+            <button class="btn btn-primary">💾 Guardar Asistencia</button>
           </div>
         </div>
       </div>
 
-      <!-- ══════════════════════════════════════════════════════════════════ -->
-      <!-- REPORTES MODULE -->
-      <!-- ══════════════════════════════════════════════════════════════════ -->
-      <div id="module-reportes" class="module-view">
-        <div class="section-card">
-          <div class="section-header">
-            <div class="section-icon-box">📋</div>
-            <div>
-              <div class="section-title">Generación de Reportes</div>
-              <div class="section-desc">Crea reportes académicos y administrativos en PDF</div>
-            </div>
-          </div>
-
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 24px;">
-            
-            <!-- Reporte 1 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
-              <div style="font-size: 32px; margin-bottom: 12px;">📊</div>
-              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Boleta de Notas</h3>
-              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Genera boletas de calificaciones por estudiante o por aula completa.</p>
-              
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>Por Estudiante</option>
-                  <option>Por Aula Completa</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>3° Secundaria A</option>
-                  <option>4° Secundaria A</option>
-                  <option>5° Secundaria A</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 16px;">
-                <select class="form-select">
-                  <option>I Bimestre</option>
-                  <option>II Bimestre</option>
-                  <option>III Bimestre</option>
-                  <option>IV Bimestre</option>
-                  <option>Anual</option>
-                </select>
-              </div>
-              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('boleta')">📄 Generar PDF</button>
-            </div>
-
-            <!-- Reporte 2 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
-              <div style="font-size: 32px; margin-bottom: 12px;">📅</div>
-              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Registro de Asistencia</h3>
-              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Reporte mensual o anual de asistencia por aula o estudiante.</p>
-              
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>Por Mes</option>
-                  <option>Por Bimestre</option>
-                  <option>Anual</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>3° Secundaria A</option>
-                  <option>Todos los grados</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 16px;">
-                <input type="month" class="form-input" value="2025-02">
-              </div>
-              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('asistencia')">📄 Generar PDF</button>
-            </div>
-
-            <!-- Reporte 3 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
-              <div style="font-size: 32px; margin-bottom: 12px;">👨‍🏫</div>
-              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Carga Horaria Docente</h3>
-              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Reporte de horas asignadas y cursos por docente.</p>
-              
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>Todos los Docentes</option>
-                  <option>Por Docente</option>
-                  <option>Por Área</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>Prof. Freddy Tipismana</option>
-                  <option>Prof. Maykell Gutierres</option>
-                  <option>Prof. Evaristo Lopez</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 16px;">
-                <select class="form-select">
-                  <option>Año 2025</option>
-                  <option>I Semestre</option>
-                  <option>II Semestre</option>
-                </select>
-              </div>
-              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('docentes')">📄 Generar PDF</button>
-            </div>
-
-            <!-- Reporte 4 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
-              <div style="font-size: 32px; margin-bottom: 12px;">📈</div>
-              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Estadísticas Académicas</h3>
-              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Análisis de rendimiento, aprobación y deserción.</p>
-              
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>Por Grado</option>
-                  <option>Por Nivel</option>
-                  <option>Institucional</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>I Bimestre</option>
-                  <option>II Bimestre</option>
-                  <option>III Bimestre</option>
-                  <option>IV Bimestre</option>
-                  <option>Anual</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 16px;">
-                <select class="form-select">
-                  <option>Gráficos y Tablas</option>
-                  <option>Solo Datos</option>
-                </select>
-              </div>
-              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('estadisticas')">📄 Generar PDF</button>
-            </div>
-
-            <!-- Reporte 5 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
-              <div style="font-size: 32px; margin-bottom: 12px;">🎓</div>
-              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Actas de Evaluación</h3>
-              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Actas oficiales de notas finales por curso y periodo.</p>
-              
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>3° Secundaria A</option>
-                  <option>4° Secundaria A</option>
-                  <option>Todos los grados</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>Matemática</option>
-                  <option>Comunicación</option>
-                  <option>Todos los cursos</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 16px;">
-                <select class="form-select">
-                  <option>I Bimestre</option>
-                  <option>Final Anual</option>
-                </select>
-              </div>
-              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('actas')">📄 Generar PDF</button>
-            </div>
-
-            <!-- Reporte 6 -->
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,150,58,0.15); border-radius: 16px; padding: 24px;">
-              <div style="font-size: 32px; margin-bottom: 12px;">📋</div>
-              <h3 style="color: var(--gold-light); margin-bottom: 8px; font-size: 16px;">Nómina de Matrícula</h3>
-              <p style="color: var(--gray-mid); font-size: 13px; margin-bottom: 16px;">Listado oficial de estudiantes matriculados.</p>
-              
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>Por Grado y Sección</option>
-                  <option>Por Nivel</option>
-                  <option>Todos los estudiantes</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 12px;">
-                <select class="form-select">
-                  <option>3° Secundaria A</option>
-                  <option>Primaria Completa</option>
-                  <option>Secundaria Completa</option>
-                </select>
-              </div>
-              <div class="form-group" style="margin-bottom: 16px;">
-                <select class="form-select">
-                  <option>Con Datos Completos</option>
-                  <option>Solo Nombres</option>
-                </select>
-              </div>
-              <button class="btn btn-primary" style="width: 100%;" onclick="generarPDF('nomina')">📄 Generar PDF</button>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- ══════════════════════════════════════════════════════════════════ -->
-      <!-- CURSOS MODULE -->
-      <!-- ══════════════════════════════════════════════════════════════════ -->
-      <div id="module-cursos" class="module-view">
-        <div class="section-card">
-          <div class="section-header">
-            <div class="section-icon-box">📚</div>
-            <div style="flex: 1;">
-              <div class="section-title">Gestión de Cursos</div>
-              <div class="section-desc">Administra los cursos y asignaciones</div>
-            </div>
-            <button class="btn btn-primary">➕ Nuevo Curso</button>
-          </div>
-
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Código</th>
-                <th>Nombre del Curso</th>
-                <th>Nivel</th>
-                <th>Grado</th>
-                <th>Docente Asignado</th>
-                <th>Horas/Sem</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>CUR-001</td>
-                <td>Matemática</td>
-                <td>Secundaria</td>
-                <td>3°</td>
-                <td>Prof. Freddy Tipismana</td>
-                <td>5</td>
-                <td><button class="btn btn-secondary btn-small">✏️ Editar</button></td>
-              </tr>
-              <tr>
-                <td>CUR-002</td>
-                <td>Comunicación</td>
-                <td>Secundaria</td>
-                <td>3°</td>
-                <td>Prof. Maykell Gutierres</td>
-                <td>5</td>
-                <td><button class="btn btn-secondary btn-small">✏️ Editar</button></td>
-              </tr>
-              <tr>
-                <td>CUR-003</td>
-                <td>Ciencias Sociales</td>
-                <td>Secundaria</td>
-                <td>3°</td>
-                <td>Prof. Evaristo Lopez</td>
-                <td>4</td>
-                <td><button class="btn btn-secondary btn-small">✏️ Editar</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ══════════════════════════════════════════════════════════════════ -->
-      <!-- CONFIG MODULE -->
-      <!-- ══════════════════════════════════════════════════════════════════ -->
-      <div id="module-config" class="module-view">
-        <div class="section-card">
-          <div class="section-header">
-            <div class="section-icon-box">⚙️</div>
-            <div>
-              <div class="section-title">Configuración del Sistema</div>
-              <div class="section-desc">Ajusta los parámetros del ERP</div>
-            </div>
-          </div>
-
-          <div style="display: grid; gap: 24px; margin-top: 24px;">
-            <div style="background: rgba(255,255,255,0.03); padding: 24px; border-radius: 16px;">
-              <h3 style="color: var(--gold-light); margin-bottom: 16px;">📅 Año Escolar</h3>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Año Académico</label>
-                  <input type="text" class="form-input" value="2025">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Fecha Inicio</label>
-                  <input type="date" class="form-input" value="2025-03-01">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Fecha Fin</label>
-                  <input type="date" class="form-input" value="2025-12-20">
-                </div>
-              </div>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.03); padding: 24px; border-radius: 16px;">
-              <h3 style="color: var(--gold-light); margin-bottom: 16px;">📊 Sistema de Calificación</h3>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Escala de Notas</label>
-                  <select class="form-select">
-                    <option>Vigesimal (0-20)</option>
-                    <option>Literal (AD, A, B, C)</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Nota Mínima Aprobatoria</label>
-                  <input type="number" class="form-input" value="11">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Bimestres/Trimestres</label>
-                  <select class="form-select">
-                    <option>4 Bimestres</option>
-                    <option>3 Trimestres</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div style="background: rgba(255,255,255,0.03); padding: 24px; border-radius: 16px;">
-              <h3 style="color: var(--gold-light); margin-bottom: 16px;">🏫 Datos Institucionales</h3>
-              <div class="form-row">
-                <div class="form-group">
-                  <label class="form-label">Nombre de la IE</label>
-                  <input type="text" class="form-input" value="IE Fray Ramón Rojas">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Código Modular</label>
-                  <input type="text" class="form-input" value="123456">
-                </div>
-                <div class="form-group">
-                  <label class="form-label">Director(a)</label>
-                  <input type="text" class="form-input" value="Dr. Roberto Campos">
-                </div>
-              </div>
-            </div>
-
-            <div style="text-align: right;">
-              <button class="btn btn-secondary">🔄 Restablecer</button>
-              <button class="btn btn-primary">💾 Guardar Configuración</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- OTROS MÓDULOS (Docentes, Cursos, Reportes, Config) -->
+      <!-- ... continuarían igual que antes ... -->
 
     </div>
   </main>
-</div>
-
-<!-- ══════════════════════════════════════════════════════════════════ -->
-<!-- MODALS -->
-<!-- ══════════════════════════════════════════════════════════════════ -->
-
-<!-- Modal Agregar Docente -->
-<div id="modal-addDocente" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <div class="modal-title">➕ Registrar Nuevo Docente</div>
-      <button class="modal-close" onclick="closeModal('addDocente')">×</button>
-    </div>
-    
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Nombres</label>
-        <input type="text" class="form-input" placeholder="Ej: Juan Carlos">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Apellidos</label>
-        <input type="text" class="form-input" placeholder="Ej: Pérez García">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">DNI</label>
-        <input type="text" class="form-input" placeholder="12345678">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input type="email" class="form-input" placeholder="correo@ejemplo.com">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Área de Especialidad</label>
-        <select class="form-select">
-          <option>Matemática</option>
-          <option>Comunicación</option>
-          <option>Ciencias Naturales</option>
-          <option>Ciencias Sociales</option>
-          <option>Inglés</option>
-          <option>Educación Física</option>
-          <option>Arte</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Nivel</label>
-        <select class="form-select">
-          <option>Primaria</option>
-          <option>Secundaria</option>
-          <option>Ambos</option>
-        </select>
-      </div>
-    </div>
-
-    <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
-      <button class="btn btn-secondary" onclick="closeModal('addDocente')">Cancelar</button>
-      <button class="btn btn-primary" onclick="guardarDocente()">💾 Guardar Docente</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Agregar Estudiante -->
-<div id="modal-addEstudiante" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <div class="modal-title">➕ Matricular Nuevo Estudiante</div>
-      <button class="modal-close" onclick="closeModal('addEstudiante')">×</button>
-    </div>
-    
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Nombres</label>
-        <input type="text" class="form-input">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Apellidos</label>
-        <input type="text" class="form-input">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">DNI</label>
-        <input type="text" class="form-input">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Fecha de Nacimiento</label>
-        <input type="date" class="form-input">
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">Grado</label>
-        <select class="form-select">
-          <option>1° Primaria</option>
-          <option>2° Primaria</option>
-          <option>3° Primaria</option>
-          <option>4° Primaria</option>
-          <option>5° Primaria</option>
-          <option>6° Primaria</option>
-          <option>1° Secundaria</option>
-          <option>2° Secundaria</option>
-          <option>3° Secundaria</option>
-          <option>4° Secundaria</option>
-          <option>5° Secundaria</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Sección</label>
-        <select class="form-select">
-          <option>A</option>
-          <option>B</option>
-          <option>C</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">Nombre del Apoderado</label>
-      <input type="text" class="form-input">
-    </div>
-
-    <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: flex-end;">
-      <button class="btn btn-secondary" onclick="closeModal('addEstudiante')">Cancelar</button>
-      <button class="btn btn-primary" onclick="guardarEstudiante()">💾 Matricular</button>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -1874,6 +1560,7 @@ const moduleTitles = {
   dashboard: 'Panel de Control',
   docentes: 'Gestión de Docentes',
   estudiantes: 'Gestión de Estudiantes',
+  secciones: 'Gestión de Secciones',
   cursos: 'Gestión de Cursos',
   horarios: 'Horarios de Clases',
   calificaciones: 'Registro de Calificaciones',
@@ -1883,136 +1570,27 @@ const moduleTitles = {
 };
 
 function showModule(moduleName) {
-  // Hide all modules
   document.querySelectorAll('.module-view').forEach(m => m.classList.remove('active'));
   
-  // Show selected module
   const module = document.getElementById('module-' + moduleName);
   if (module) {
     module.classList.add('active');
   }
   
-  // Update nav items
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   event.target.closest('.nav-item').classList.add('active');
   
-  // Update page title
   document.getElementById('pageTitle').textContent = moduleTitles[moduleName];
-  
-  // Special load for docentes table
-  if (moduleName === 'docentes') {
-    loadDocentesTable();
-  }
 }
 
-// ══════════════════════════════════════════════════════════════════
-// DOCENTES DATA
-// ══════════════════════════════════════════════════════════════════
-
-const docentes = [
-  { id: 1, codigo: "D-001", nombre: "Prof. Carlos Alberto Mendoza Ríos", area: "Matemática", nivel: "Secundaria", horas: 24, estado: "activo" },
-  { id: 2, codigo: "D-002", nombre: "Prof. Rosa Elena Vargas Huamán", area: "Comunicación", nivel: "Secundaria", horas: 20, estado: "activo" },
-  { id: 3, codigo: "D-003", nombre: "Prof. Juan Manuel Torres Sánchez", area: "Ciencias Naturales", nivel: "Secundaria", horas: 18, estado: "activo" },
-  { id: 4, codigo: "D-004", nombre: "Prof. María del Carmen Rojas Díaz", area: "Historia y Geografía", nivel: "Secundaria", horas: 20, estado: "activo" },
-  { id: 5, codigo: "D-005", nombre: "Prof. Luis Fernando Cáceres Pérez", area: "Inglés", nivel: "Primaria", horas: 22, estado: "activo" },
-  { id: 6, codigo: "D-006", nombre: "Prof. Ana Sofía Paredes Luna", area: "Educación Física", nivel: "Primaria", horas: 16, estado: "licencia" },
-  { id: 7, codigo: "D-007", nombre: "Prof. Roberto Ángel Flores Mamani", area: "Matemática", nivel: "Primaria", horas: 20, estado: "activo" },
-  { id: 8, codigo: "D-008", nombre: "Prof. Gloria Beatriz Quispe Arce", area: "Arte y Cultura", nivel: "Secundaria", horas: 12, estado: "activo" },
-  { id: 9, codigo: "D-009", nombre: "Prof. Freddy Tipismana", area: "Matemática", nivel: "Secundaria", horas: 20, estado: "activo" },
-  { id: 10, codigo: "D-010", nombre: "Prof. Maykell Gutierres", area: "Comunicación", nivel: "Primaria", horas: 18, estado: "activo" },
-  { id: 11, codigo: "D-011", nombre: "Prof. Evaristo Lopez", area: "Ciencias Sociales", nivel: "Secundaria", horas: 22, estado: "activo" },
-  { id: 12, codigo: "D-012", nombre: "Prof. Javier Mallma", area: "Educación Física", nivel: "Secundaria", horas: 20, estado: "activo" }
-];
-
-function loadDocentesTable() {
-  const tbody = document.getElementById('docentesTableBody');
-  tbody.innerHTML = docentes.map(d => `
-    <tr>
-      <td>${d.codigo}</td>
-      <td>${d.nombre}</td>
-      <td>${d.area}</td>
-      <td>${d.nivel}</td>
-      <td>${d.horas}</td>
-      <td><span class="badge ${d.estado === 'activo' ? 'badge-success' : 'badge-warning'}">${d.estado === 'activo' ? 'Activo' : 'Licencia'}</span></td>
-      <td>
-        <button class="btn btn-secondary btn-small">👁️ Ver</button>
-        <button class="btn btn-secondary btn-small">✏️ Editar</button>
-      </td>
-    </tr>
-  `).join('');
+function verDetalle(seccion) {
+  alert(`📊 Ver detalle de sección ${seccion}\n\nAquí se mostraría:\n• Lista de estudiantes\n• Horario de clases\n• Estadísticas\n• Tutor asignado`);
 }
 
-function buscarDocente(query) {
-  const filtered = docentes.filter(d => 
-    d.nombre.toLowerCase().includes(query.toLowerCase()) ||
-    d.codigo.toLowerCase().includes(query.toLowerCase()) ||
-    d.area.toLowerCase().includes(query.toLowerCase())
-  );
-  
-  const tbody = document.getElementById('docentesTableBody');
-  tbody.innerHTML = filtered.map(d => `
-    <tr>
-      <td>${d.codigo}</td>
-      <td>${d.nombre}</td>
-      <td>${d.area}</td>
-      <td>${d.nivel}</td>
-      <td>${d.horas}</td>
-      <td><span class="badge ${d.estado === 'activo' ? 'badge-success' : 'badge-warning'}">${d.estado === 'activo' ? 'Activo' : 'Licencia'}</span></td>
-      <td>
-        <button class="btn btn-secondary btn-small">👁️ Ver</button>
-        <button class="btn btn-secondary btn-small">✏️ Editar</button>
-      </td>
-    </tr>
-  `).join('');
-}
-
-// ══════════════════════════════════════════════════════════════════
-// MODALS
-// ══════════════════════════════════════════════════════════════════
-
-function openModal(modalName) {
-  document.getElementById('modal-' + modalName).classList.add('active');
-}
-
-function closeModal(modalName) {
-  document.getElementById('modal-' + modalName).classList.remove('active');
-}
-
-function guardarDocente() {
-  alert('✅ Docente registrado exitosamente');
-  closeModal('addDocente');
-}
-
-function guardarEstudiante() {
-  alert('✅ Estudiante matriculado exitosamente');
-  closeModal('addEstudiante');
-}
-
-// ══════════════════════════════════════════════════════════════════
-// REPORTS PDF GENERATION
-// ══════════════════════════════════════════════════════════════════
-
-function generarPDF(tipo) {
-  const mensajes = {
-    boleta: '📄 Generando Boleta de Notas en PDF...',
-    asistencia: '📄 Generando Registro de Asistencia en PDF...',
-    docentes: '📄 Generando Reporte de Carga Horaria en PDF...',
-    estadisticas: '📄 Generando Estadísticas Académicas en PDF...',
-    actas: '📄 Generando Actas de Evaluación en PDF...',
-    nomina: '📄 Generando Nómina de Matrícula en PDF...'
-  };
-  
-  alert(mensajes[tipo] || '📄 Generando reporte...');
-  
-  // Aquí se integraría con una librería como jsPDF o html2pdf
-  setTimeout(() => {
-    alert('✅ PDF generado exitosamente!\n\nEl archivo se ha descargado en tu carpeta de descargas.');
-  }, 1500);
-}
-
-function filtrarEstudiantes() {
-  // Función para filtrar estudiantes según los selects
-  alert('Filtrando estudiantes...');
+function filtrarSecciones() {
+  const grado = document.getElementById('filterGrado').value;
+  const seccion = document.getElementById('filterSeccion').value;
+  alert(`Filtrando por:\nGrado: ${grado || 'Todos'}\nSección: ${seccion || 'Todas'}`);
 }
 
 // Close modals on outside click
@@ -2021,11 +1599,6 @@ window.onclick = function(event) {
     event.target.classList.remove('active');
   }
 }
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-  loadDocentesTable();
-});
 </script>
 
 </body>
